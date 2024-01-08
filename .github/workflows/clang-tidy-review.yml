@@ -20,6 +20,7 @@ jobs:
         build_dir: build
         config_file: ".clang-tidy"
         max_comments: '100'
+        split_workflow: true
         cmake_command: |
           cmake --version && \
           git config --global --add safe.directory "$GITHUB_WORKSPACE" && \
