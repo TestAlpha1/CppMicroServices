@@ -23,7 +23,7 @@ jobs:
         cmake_command: |
           cmake --version && \
           git config --global --add safe.directory "$GITHUB_WORKSPACE" && \
-          cmake . -B build
+          cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
     # Uploads an artefact containing clang_fixes.json
     - uses: ZedThree/clang-tidy-review/upload@v0.14.0
       id: upload-review
