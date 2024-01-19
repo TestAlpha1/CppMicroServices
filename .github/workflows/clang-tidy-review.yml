@@ -1,4 +1,4 @@
-ename: clang-tidy-review-diff
+name: clang-tidy-review-diff
 
 # You can be more specific, but it currently only works on pull requests
 on: [pull_request]
