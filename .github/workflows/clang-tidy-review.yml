@@ -1,4 +1,4 @@
-name: clang-tidy-review
+name: clang-tidy-review-diff
 
 # You can be more specific, but it currently only works on pull requests
 on: [pull_request]
@@ -12,16 +12,23 @@ jobs:
       with:
         submodules: true
 
+    # Optionally generate compile_commands.json
+
+    - name: Checkout submodules
+      run: git submodule update --init --recursive
+
     - uses: ZedThree/clang-tidy-review@v0.14.0
       id: review
       with:
         build_dir: build
         config_file: ".clang-tidy"
         max_comments: '100'
+        exclude: "third_party/*"
         cmake_command: |
           cmake --version && \
           git config --global --add safe.directory "$GITHUB_WORKSPACE" && \
           cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
+          
     # Uploads an artefact containing clang_fixes.json
     - uses: ZedThree/clang-tidy-review/upload@v0.14.0
       id: upload-review
