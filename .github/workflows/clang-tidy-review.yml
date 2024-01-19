@@ -25,7 +25,6 @@ jobs:
         max_comments: '100'
         exclude: "third_party/*"
         cmake_command: |
-          cmake --version && \
           git config --global --add safe.directory "$GITHUB_WORKSPACE" && \
           cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
           
